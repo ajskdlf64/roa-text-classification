@@ -40,7 +40,24 @@ def main(args):
         total=len(DATASET_LIST),
         desc="[2/5] Down Sampling...",
     ):
-        pass
+        FILE_NAME = DATASET.split(".")[0]
+
+        globals()[f"{FILE_NAME}_0"] = globals()[f"{FILE_NAME}"][
+            globals()[f"{FILE_NAME}"]["label"] == 0
+        ]
+        globals()[f"{FILE_NAME}_1"] = globals()[f"{FILE_NAME}"][
+            globals()[f"{FILE_NAME}"]["label"] == 1
+        ]
+
+        globals()[f"{FILE_NAME}_0"] = globals()[f"{FILE_NAME}_0"].sample(
+            len(globals()[f"{FILE_NAME}_1"])
+        )
+        globals()[f"{FILE_NAME}"] = pd.concat(
+            [globals()[f"{FILE_NAME}_0"], globals()[f"{FILE_NAME}_1"]]
+        )
+        globals()[f"{FILE_NAME}"] = globals()[f"{FILE_NAME}"].sample(
+            len(globals()[f"{FILE_NAME}"])
+        )
 
     # Text Preprocessing
     for DATASET in tqdm(
@@ -66,11 +83,8 @@ def main(args):
         total=len(DATASET_LIST),
         desc="[4/5] train,val,test split...",
     ):
-
         FILE_NAME = DATASET.split(".")[0]
-
         train, val, test = None, None, None
-
         total_data = len(globals()[f"{FILE_NAME}"])
 
         if args.test_ratio > 0.0:
