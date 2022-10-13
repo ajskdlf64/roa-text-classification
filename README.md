@@ -1,8 +1,6 @@
 # ROA Text Classification Model
 8개의 Text Classification Model을 학습하고 평가하고 사용하는 모델입니다.
 
-<br></br>
-
 ## File System Structure
 ```powerhsell
 .
@@ -55,8 +53,6 @@
 |____train.py
 ```
 
-<br></br>
-
 
 ##  01. install
 - ddd
@@ -66,8 +62,6 @@ git clone https://github.com/ajskdlf64/roa-text-classification.git
 ```powershell
 pip install -r requirements.txt
 ```
-
-<br></br>
 
 ## 02. setup dataset
 - 학습에 사용할 데이터셋을 `dataset/original` dir 하위에 위치시킵니다.
@@ -96,15 +90,11 @@ pip install -r requirements.txt
 python dataprocess.py --seed 1234 --val_ratio 0.1 --make_test_ratio 0.1
 ```
 
-<br></br>
-
 ## 03. train
 - ddd
 ```powershell
 python train.py --seed 1234 --max_epochs 1 --lr 3e-5 --batch_size 16 --backbone distilbert-base-multilingual-cased
 ```
-
-<br></br>
 
 ## 04. eval
 - sddd
@@ -112,16 +102,11 @@ python train.py --seed 1234 --max_epochs 1 --lr 3e-5 --batch_size 16 --backbone 
 python eval.py
 ```
 
-<br></br>
-
 ## 06. run.sh
 ```powershell
 python dataprocess.py --seed 1234 --val_ratio 0.1 --test_ratio 0.1 &&
 python train.py --seed 1234 --max_epochs 1 --lr 3e-5 --batch_size 16 --backbone distilbert-base-multilingual-cased &&
 python eval.py
 ```
-
-<br></br>
-
 
 ## 07. infer
