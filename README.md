@@ -6,25 +6,53 @@
 ## File System Structure
 ```powerhsell
 .
-|____text classification.ipynb
 |____datasets
 | |____original
-| | |____invest_labeling.xlsx
+| | |____invest.xlsx
+| | |____category.xlsx
+| | |____corporate_performance.xlsx
+| | |____release.xlsx
+| | |____mna.xlsx
+| | |____partnership.xlsx
+| | |____go_public.xlsx
+| | |____personnel_changes.xlsx
 | |____train
 | | |____.gitkeep
+| | |____personnel_changes.csv
+| | |____invest.csv
+| | |____category.csv
+| | |____corporate_performance.csv
+| | |____release.csv
+| | |____mna.csv
+| | |____partnership.csv
+| | |____go_public.csv
 | |____val
 | | |____.gitkeep
+| | |____personnel_changes.csv
+| | |____invest.csv
+| | |____category.csv
+| | |____corporate_performance.csv
+| | |____release.csv
+| | |____mna.csv
+| | |____partnership.csv
+| | |____go_public.csv
 | |____test
 | | |____.gitkeep
-|____train.py
+| | |____personnel_changes.csv
+| | |____invest.csv
+| | |____category.csv
+| | |____corporate_performance.csv
+| | |____release.csv
+| | |____mna.csv
+| | |____partnership.csv
+| | |____go_public.csv
+|____.gitignore
+|____dataprocess.py
 |____eval.py
 |____README.md
 |____requirements.txt
-|____dataprocess.py
 |____run.sh
-|____.gitignore
-|____train.csv
-|____zzzzz.ipynb
+|____train.py
 ```
 
 <br></br>
