@@ -55,7 +55,6 @@
 
 
 ##  01. install
-- ddd
 ```powershell
 git clone https://github.com/ajskdlf64/roa-text-classification.git
 ```
@@ -80,9 +79,6 @@ pip install -r requirements.txt
     - 제휴 : partnership
     - 상장 : go_public
     - 인사 : personnel_changes
-```powershell
-
-```
 
 ## 02. dataprocess
 - label 비율에 따라 down sampling을 진행하고, 
