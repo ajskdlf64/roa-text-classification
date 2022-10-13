@@ -1,59 +1,6 @@
 # ROA Text Classification Model
 8개의 Text Classification Model을 학습하고 평가하고 사용하는 모델입니다.
 
-## File System Structure
-```powerhsell
-.
-|____datasets
-| |____original
-| | |____invest.xlsx
-| | |____category.xlsx
-| | |____corporate_performance.xlsx
-| | |____release.xlsx
-| | |____mna.xlsx
-| | |____partnership.xlsx
-| | |____go_public.xlsx
-| | |____personnel_changes.xlsx
-| |____train
-| | |____.gitkeep
-| | |____personnel_changes.csv
-| | |____invest.csv
-| | |____category.csv
-| | |____corporate_performance.csv
-| | |____release.csv
-| | |____mna.csv
-| | |____partnership.csv
-| | |____go_public.csv
-| |____val
-| | |____.gitkeep
-| | |____personnel_changes.csv
-| | |____invest.csv
-| | |____category.csv
-| | |____corporate_performance.csv
-| | |____release.csv
-| | |____mna.csv
-| | |____partnership.csv
-| | |____go_public.csv
-| |____test
-| | |____.gitkeep
-| | |____personnel_changes.csv
-| | |____invest.csv
-| | |____category.csv
-| | |____corporate_performance.csv
-| | |____release.csv
-| | |____mna.csv
-| | |____partnership.csv
-| | |____go_public.csv
-|____.gitignore
-|____dataprocess.py
-|____eval.py
-|____README.md
-|____requirements.txt
-|____run.sh
-|____train.py
-```
-
-
 ##  01. install
 ```powershell
 git clone https://github.com/ajskdlf64/roa-text-classification.git

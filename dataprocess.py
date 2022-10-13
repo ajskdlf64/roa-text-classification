@@ -59,6 +59,9 @@ def main(args):
             len(globals()[f"{FILE_NAME}"])
         )
 
+        globals()[f"{FILE_NAME}"] = globals()[f"{FILE_NAME}"].dropna()
+        globals()[f"{FILE_NAME}"] = globals()[f"{FILE_NAME}"].fillna("")
+
     # Text Preprocessing
     for DATASET in tqdm(
         DATASET_LIST,
@@ -71,10 +74,10 @@ def main(args):
         def preprocessing(title, text):
             return "[제목] " + title + " [본문]" + text
 
-        globals()[f"{FILE_NAME}"]["data"] = globals()[f"{FILE_NAME}"][
+        globals()[f"{FILE_NAME}"]["sentence"] = globals()[f"{FILE_NAME}"][
             ["title", "text"]
         ].apply(lambda x: preprocessing(x["title"], x["text"]), axis=1)
-        globals()[f"{FILE_NAME}"] = globals()[f"{FILE_NAME}"][["data", "label"]]
+        globals()[f"{FILE_NAME}"] = globals()[f"{FILE_NAME}"][["sentence", "label"]]
 
     # train,val,test split
     for DATASET in tqdm(
