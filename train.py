@@ -17,7 +17,8 @@ from transformers import (
 from datasets import load_dataset, load_metric
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 def main(args):
@@ -62,7 +63,7 @@ def main(args):
 
         model = AutoModelForSequenceClassification.from_pretrained(
             args.backbone, num_labels=num_labels
-        ).cuda()
+        )
 
         metric_name = "f1"
 
@@ -104,13 +105,14 @@ def main(args):
 
         print()
 
-    for k,v in OUTPUTS.items() : 
+    for k, v in OUTPUTS.items():
         print(f"{k:25} | {v}")
 
     print("\nTrain Completed.\n")
 
 
 if __name__ == "__main__":
+
     parser = argparse.ArgumentParser(description="configs")
     parser.add_argument("--seed", required=False, type=int, default=1234)
     parser.add_argument("--max_epochs", required=False, type=int, default=1)
