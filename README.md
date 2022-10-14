@@ -34,13 +34,11 @@ python dataprocess.py --seed 1234 --val_ratio 0.1 --make_test_ratio 0.1
 ```
 
 ## 03. train
-- ddd
 ```powershell
 python train.py --seed 1234 --max_epochs 1 --lr 3e-5 --batch_size 16 --backbone distilbert-base-multilingual-cased
 ```
 
 ## 04. eval
-- sddd
 ```powershell
 python eval.py
 ```
