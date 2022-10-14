@@ -77,7 +77,6 @@ def main():
 
     str_out = "\n" * 2 + "|| Summary" + "\n" + "-" * 110 + "\n"
     for OUTPUT in OUTPUTS:
-        print(OUTPUT)
         for k, v in OUTPUT.items():
             if type(v) == str:
                 str_out += f"{k} : {v:23} | "
