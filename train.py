@@ -17,7 +17,7 @@ from transformers import (
 from datasets import load_dataset, load_metric
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2,3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
@@ -51,7 +51,9 @@ def main(args):
 
         metric = load_metric("f1")
 
-        tokenizer = AutoTokenizer.from_pretrained(args.backbone, use_fast=True)
+        tokenizer = AutoTokenizer.from_pretrained(
+            pretrained_model_name_or_path=args.backbone, use_fast=True
+        )
 
         def preprocess_function(examples):
             return tokenizer(examples["sentence"], truncation=True)
@@ -62,8 +64,9 @@ def main(args):
         num_labels = 2
 
         model = AutoModelForSequenceClassification.from_pretrained(
-            args.backbone, num_labels=num_labels
-        )
+            pretrained_model_name_or_path=args.backbone,
+            num_labels=num_labels,
+        ).to("cuda")
 
         metric_name = "f1"
 
@@ -77,6 +80,8 @@ def main(args):
             per_device_train_batch_size=args.batch_size,
             per_device_eval_batch_size=args.batch_size,
             num_train_epochs=args.max_epochs,
+            seed=args.seed,
+            fp16=True,
             weight_decay=0.01,
             load_best_model_at_end=True,
             metric_for_best_model=metric_name,
