@@ -21,6 +21,7 @@ def main(args):
 
     # Target Dataset List
     DATASET_LIST = os.listdir(Path(ORIGINAL_PATH))
+    DATASET_LIST = [file for file in DATASET_LIST if ".xlsx" in file]
 
     # Load Dataset
     for DATASET in tqdm(

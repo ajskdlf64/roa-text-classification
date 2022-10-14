@@ -17,7 +17,7 @@ from transformers import (
 from datasets import load_dataset, load_metric
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2,3"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
@@ -70,7 +70,7 @@ def main(args):
         model_name = args.backbone.split("/")[-1]
 
         train_args = TrainingArguments(
-            f"models/{model_name}-finetuned-{TASK}",
+            output_dir=f"checkpoints/{model_name}-finetuned-{TASK}",
             evaluation_strategy="epoch",
             save_strategy="epoch",
             learning_rate=args.lr,
@@ -91,8 +91,8 @@ def main(args):
             )
 
         trainer = Trainer(
-            model,
-            train_args,
+            model=model,
+            args=train_args,
             train_dataset=encoded_dataset["train"],
             eval_dataset=encoded_dataset["test"],
             tokenizer=tokenizer,
@@ -103,10 +103,19 @@ def main(args):
 
         OUTPUTS[TASK] = trainer.evaluate()
 
+        model.save_pretrained(f"models/{model_name}-finetuned-{TASK}")
+        tokenizer.save_pretrained(f"models/{model_name}-finetuned-{TASK}")
+
         print()
 
+    str_out = ""
     for k, v in OUTPUTS.items():
-        print(f"{k:25} | {v}")
+        str_out += f"{k:25} || "
+        for k2, v2 in v.items():
+            v2 = round(v2, 4)
+            str_out += f"{k2}: {v2:<6} | "
+        str_out += "\n"
+    print(str_out)
 
     print("\nTrain Completed.\n")
 
