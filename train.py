@@ -17,7 +17,7 @@ from transformers import (
 from datasets import load_dataset, load_metric
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,4,7"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 

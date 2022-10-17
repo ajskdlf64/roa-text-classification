@@ -32,7 +32,7 @@ def main(args):
     ):
         FILE_NAME = DATASET.split(".")[0]
         FILE_PATH = Path(ORIGINAL_PATH, DATASET)
-        globals()[f"{FILE_NAME}"] = pd.read_excel(FILE_PATH, index_col=0)
+        globals()[f"{FILE_NAME}"] = pd.read_csv(FILE_PATH)
 
     # Down Sampling
     for DATASET in tqdm(
@@ -50,9 +50,16 @@ def main(args):
             globals()[f"{FILE_NAME}"]["label"] == 1
         ]
 
-        globals()[f"{FILE_NAME}_0"] = globals()[f"{FILE_NAME}_0"].sample(
-            len(globals()[f"{FILE_NAME}_1"])
-        )
+        # 개수가 더 적은쪽을 기준으로 1:1 비율로 조정
+        if len(globals()[f"{FILE_NAME}_0"]) >= len(globals()[f"{FILE_NAME}_1"]):
+            globals()[f"{FILE_NAME}_0"] = globals()[f"{FILE_NAME}_0"].sample(
+                len(globals()[f"{FILE_NAME}_1"])
+            )
+        else:
+            globals()[f"{FILE_NAME}_1"] = globals()[f"{FILE_NAME}_1"].sample(
+                len(globals()[f"{FILE_NAME}_0"])
+            )
+
         globals()[f"{FILE_NAME}"] = pd.concat(
             [globals()[f"{FILE_NAME}_0"], globals()[f"{FILE_NAME}_1"]]
         )
