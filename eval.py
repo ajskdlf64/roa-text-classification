@@ -24,7 +24,7 @@ def main():
     print(str_out)
 
     DATASET_LIST = os.listdir(Path(ORIGINAL_PATH))
-    TASKS = [file.split(".")[0] for file in DATASET_LIST if ".xlsx" in file]
+    TASKS = [file.split(".")[0] for file in DATASET_LIST if ".csv" in file]
 
     OUTPUTS = list()
 

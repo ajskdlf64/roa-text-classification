@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## 02. setup dataset
 - 학습에 사용할 데이터셋을 `dataset/original` dir 하위에 위치시킵니다.
 - 이 때 데이터셋은 다음과 같은 3가지 조건을 반드시 충족시켜야 합니다.
-  - 조건1) original 및 test 데이터셋은 xlsx 확장자를 가져야 합니다.
+  - 조건1) original 및 test 데이터셋은 `csv` 확장자를 가져야 합니다.
   - 조건2) 데이터셋 파일 안에는 아래의 3개의 칼럼이 반드시 존재해야 합니다.
      - title : 기사 제목
      - text : 기사 본문
